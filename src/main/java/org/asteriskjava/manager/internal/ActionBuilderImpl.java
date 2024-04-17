@@ -213,7 +213,7 @@ class ActionBuilderImpl implements ActionBuilder
             sb.append("=");
             if (entry.getValue() != null)
             {
-                if (entry.getKey().equalsIgnoreCase("Content"))
+                if ("Content".equalsIgnoreCase(entry.getKey()))
                 {
                     String sp[] = entry.getValue().split("\n");
                     if (sp.length > 0)

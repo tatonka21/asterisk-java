@@ -80,7 +80,7 @@ class ResponseBuilderImpl extends AbstractBuilder implements ResponseBuilder
             for (String resultLine : ((String) attributes.get(ManagerReader.COMMAND_RESULT_RESPONSE_KEY)).split("\n"))
             {
                 // on error there is a leading space
-                if (!resultLine.equals("--END COMMAND--") && !resultLine.equals(" --END COMMAND--"))
+                if (!"--END COMMAND--".equals(resultLine) && !" --END COMMAND--".equals(resultLine))
                 {
                     result.add(resultLine);
                 }

@@ -26,7 +26,7 @@ public class ExtensionsConfigFileReader extends ConfigFileReader
         ConfigElement configElement;
 
         if ((line.trim().startsWith("exten") || line.trim().startsWith("include")) && currentCategory != null
-                && (currentCategory.getName().equals("general") || currentCategory.getName().equals("globals")))
+                && ("general".equals(currentCategory.getName()) || "globals".equals(currentCategory.getName())))
             throw new ConfigParseException(configfile, lineno,
                     "cannot have 'exten' or 'include' in global or general sections");
 
@@ -63,7 +63,7 @@ public class ExtensionsConfigFileReader extends ConfigFileReader
     {
         ConfigVariable initialVariable = parseVariable(configfile, lineno, line);
 
-        if (!initialVariable.getName().equals("exten"))
+        if (!"exten".equals(initialVariable.getName()))
             throw new ConfigParseException(configfile, lineno, "missing 'exten' near " + line);
         line = initialVariable.getValue().trim();
 
@@ -131,10 +131,10 @@ public class ExtensionsConfigFileReader extends ConfigFileReader
                 data = processQuotesAndSlashes(data, ',', '|');
             }
 
-            if (!appl.trim().equals(""))
+            if (!"".equals(appl.trim()))
             {
                 args.add(appl.trim());
-                if (!data.trim().equals(""))
+                if (!"".equals(data.trim()))
                 {
                     String[] dataSplit = data.split("\\|");
                     for (String aDataSplit : dataSplit)

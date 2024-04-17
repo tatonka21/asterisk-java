@@ -140,7 +140,7 @@ public class SocketConnectionFacadeImpl implements SocketConnectionFacade
         socket.connect(new InetSocketAddress(host, port), timeout);
 
         initialize(socket, encoding, lineDelimiter);
-        if (System.getProperty(Trace.TRACE_PROPERTY, "false").equalsIgnoreCase("true"))
+        if ("true".equalsIgnoreCase(System.getProperty(Trace.TRACE_PROPERTY, "false")))
         {
             trace = new FileTrace(socket);
         }
