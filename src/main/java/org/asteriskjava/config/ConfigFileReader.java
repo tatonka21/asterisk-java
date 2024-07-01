@@ -1,5 +1,6 @@
 package org.asteriskjava.config;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -98,7 +99,7 @@ public class ConfigFileReader
         CharBuffer buffer = CharBuffer.allocate(MAX_LINE_LENGTH);
 
         reset();
-        while ((line = reader.readLine()) != null)
+        while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null)
         {
             lineno++;
             buffer.clear();
